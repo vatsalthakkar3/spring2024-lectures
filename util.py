@@ -4,11 +4,11 @@ import json
 import hashlib
 import shutil
 import traceback
-import requests
 from io import BytesIO
 from dataclasses import dataclass
 from typing import Optional, List, Any, Union
 import torch
+from security import safe_requests
 
 
 def round1(x: float) -> float:
@@ -42,7 +42,7 @@ def download_file(url: str, filename: str):
     """Download `url` and save the contents to `filename`.  Skip if `filename` already exists."""
     if not os.path.exists(filename):
         print(f"Downloading {url} to {filename}")
-        response = requests.get(url)
+        response = safe_requests.get(url)
         with open(filename, "wb") as f:
             shutil.copyfileobj(BytesIO(response.content), f)
 
