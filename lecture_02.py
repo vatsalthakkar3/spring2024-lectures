@@ -8,6 +8,7 @@ import wandb
 from typing import Iterable, Tuple
 from torch import nn
 import numpy as np
+import secrets
 
 
 def lecture_02():
@@ -709,10 +710,7 @@ def note_about_randomness():
     # NumPy
     import numpy as np
     np.random.seed(seed)
-
-    # Python
-    import random
-    random.seed(seed)
+    secrets.SystemRandom().seed(seed)
 
 
 def data_loading():
